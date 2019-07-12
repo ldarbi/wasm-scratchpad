@@ -1,0 +1,33 @@
+<html>
+
+<head>
+    <script src="./fastcomp/test.js"></script>
+    <script>
+       
+        Module.onRuntimeInitialized = () => {
+            runTest();
+        }
+
+        function runTest() 
+        {
+            let obj = new Module.MyClass();
+            obj.fill();
+            const startTime = Date.now();
+            for (let i = 0; i < 1000; ++i) {
+                obj.insertItem(Math.random());
+            }
+            const endTime = Date.now();
+            console.log(obj.getItem(9999));
+            console.log(`Test took ${endTime - startTime} ms`);
+        }
+
+    </script>
+</head>
+
+<body>
+    <div>
+        <button onclick="runTest();">Run</button>
+    </div>
+</body>
+
+</html>
